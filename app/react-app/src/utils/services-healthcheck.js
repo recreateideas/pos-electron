@@ -1,9 +1,9 @@
-const request = require('request');
+import { fetcher } from '../modules';
 
 const services = [
     {
         name: 'data-service',
-        endpoint: 'http://127.0.0.1:2999/health',
+        url: 'http://127.0.0.1:2999/health',
         maxRetries: 10
     }
     // add other services here to perform healthchecks
@@ -11,20 +11,30 @@ const services = [
 const servicesHealthcheck = async () => {
     const checks = await Promise.allSettled(
         services.map(service => {
-            const { name, endpoint, maxRetries } = service;
+            const { name, url, maxRetries } = service;
             return new Promise((resolve, reject) => {
                 let triesCount = 1;
                 const check = setInterval(() => {
-                    request(endpoint, (error, response, body) => {
-                        if (!error && response.statusCode === 200) {
-                            resolve({ [name]: { endpoint, running: true } });
-                            clearInterval(check);
+                    const config = {
+                        url,
+                        method: 'GET',
+                        errorHandler: error => {
+                            if (triesCount === maxRetries) {
+                                reject({ [name]: { url, running: true } });
+                                clearInterval(check);
+                                return;
+                            }
+                            triesCount++;
+                        },
+                        responseHandler: response => {
+                            if (response.status === 200) {
+                                resolve({ [name]: { url, running: true } });
+                                clearInterval(check);
+                            }
+                            triesCount++;
                         }
-                        if (triesCount === maxRetries) {
-                            reject({ [name]: { endpoint, running: false } });
-                        }
-                        triesCount++;
-                    });
+                    };
+                    return fetcher(config);
                 }, 1000);
             });
         })

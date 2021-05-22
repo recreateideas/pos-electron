@@ -3,9 +3,9 @@ import Spinner from 'react-spinner-material';
 import { Container, Message } from './styledComponents';
 
 const Loader = props => {
-    const { color, message } = props;
+    const { color, freeze, message } = props;
     return (
-        <Container className="loader">
+        <Container className="loader" {...{ freeze }}>
             <Spinner {...{ radius: 40, color, stroke: 5, visible: true }} />
             {message && <Message>{message}</Message>}
         </Container>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
     height: 100%;
@@ -7,6 +7,11 @@ const Container = styled.div`
     justify-content: center;
     .react-spinner-material {
         margin: auto;
+        ${props =>
+            props.freeze &&
+            css`
+                animation: unset;
+            `}
     }
 `;
 

@@ -14,6 +14,8 @@ git clone https://github.com/recreateideas/pos-electron.git
 npm run electron:bootstrap
 ```
 
+This will install all dependencies, build the UI and start the app.
+
 ## Requirements:
 
 -   Create a React application using the Electron desktop application framework (https://www.electronjs.org/).
@@ -27,15 +29,15 @@ Extras:
 -   Products are fetched from the backend, simulating a db query or a 3rd party API integration
 -   100% test coverage for data-service
 -   Services health checks. Checks are run before the UI is rendered
--   App setup with redux. All API requests are handled informally within redux actions.
--   The codebase has been organised to support microservice architecture
--   React-app has been architected to be able to run both as web app and electron app.
--   Ui is responsive
+-   App setup with redux. TO prep for scalability and to handle all API requests consistently with redux actions.
+-   The codebase has been organised to prepare for a monorepo and to support microservice architecture
+-   Ui is responsive (somewhat)
 
 What's missing
 
 -   Request validation in backend
--   Error handling in UI (Error boundaries and invalid API responses)
+-   Some error handling in UI (Error boundaries and invalid API responses)
+-   Properly devide redux store into slices
 -   Test coverage in UI
 -   Electron-builder is not configured
 

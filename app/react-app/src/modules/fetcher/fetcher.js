@@ -13,10 +13,11 @@ const fetcher = async args => {
     const params = { method, headers, data };
     let response;
     try {
-        console.log(params);
         response = await axios(url, params);
+        console.log(response);
         return responseHandler(response);
     } catch (err) {
+        console.log(err);
         return errorHandler(err);
     }
 };

@@ -17,7 +17,7 @@ const ScrollContainer = styled.div`
     overflow: auto;
 `;
 
-const Category = styled.thead`
+const Category = styled.div`
     font-size: 24px;
     font-weight: 600;
 `;

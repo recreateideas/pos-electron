@@ -4,6 +4,7 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    box-shadow: rgb(107 91 149 / 10%) 0px 8px 20px 0px;
 `;
 
 const TotalSection = styled.div`

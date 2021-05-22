@@ -45,7 +45,7 @@ const Checkout = memo(props => {
                         {...{ color: 'white', message: 'loading products...' }}
                     />
                 ) : (
-                    'Checkout'
+                    'Pay'
                 )}
             </GreatBigButton>
         </Container>

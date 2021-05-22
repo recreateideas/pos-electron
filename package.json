@@ -7,8 +7,9 @@
     "scripts": {
         "build:react": "cd app/react-app && npm i && npm run build && cd ../..",
         "install:services": "cd app/services/data-service && npm i && cd ../..",
-        "bootstrap": "npm run build:react && npm run install:services",
-        "electron": "electron .",
+        "cover:services": "cd app/services/data-service && npm run test:cover && cd ../..",
+        "bootstrap": "npm i && npm run install:services && npm run cover:services",
+        "electron": "npm run build:react && electron .",
         "electron:debug": "npm run electron -- --debug",
         "electron:bootstrap": "npm run bootstrap && npm run electron"
     },

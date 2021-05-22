@@ -13,7 +13,7 @@ import {
 } from './styledComponents';
 
 const Products = props => {
-    const { products } = props;
+    const { products, onClick } = props;
     const bootstrap = {
         xs: 6,
         md: 4,
@@ -33,10 +33,18 @@ const Products = props => {
                             </Category>
                             <BSRow>
                                 {items.map((item, i) => {
-                                    const { name, price, imageUrl } = item;
+                                    const { id, name, price, imageUrl } = item;
                                     return (
                                         <BSCol key={i} {...bootstrap}>
-                                            <ImageContainer>
+                                            <ImageContainer
+                                                {...{
+                                                    onClick: onClick.bind(
+                                                        null,
+                                                        id,
+                                                        price
+                                                    )
+                                                }}
+                                            >
                                                 <Image
                                                     alt={name}
                                                     src={imageUrl}
