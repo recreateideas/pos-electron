@@ -1,10 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from './styledComponents';
+import { Container, Title } from './styledComponents';
 
 const Header = props => {
     const { title } = props;
-    return <Container>{title}</Container>;
+    return (
+        <Container className="header">
+            <Title className="title">{title}</Title>
+        </Container>
+    );
 };
 
 Header.displayName = 'Header';

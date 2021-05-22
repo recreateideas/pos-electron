@@ -16,9 +16,7 @@ const servicesHealthcheck = async () => {
                 let triesCount = 1;
                 const check = setInterval(() => {
                     request(endpoint, (error, response, body) => {
-                        console.log(response);
                         if (!error && response.statusCode === 200) {
-                            console.log(response.body);
                             resolve({ [name]: { endpoint, running: true } });
                             clearInterval(check);
                         }

@@ -1,22 +1,35 @@
-import React from 'react';
-import { Container as BSContainer, Row as BSRow } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Container as BSContainer } from 'react-bootstrap';
+import { useDispatch, actions, useSelector, selectors } from '../../redux';
 import { Order, Products } from '../../features';
-import { Container, BSCol } from './styledComponents';
+import { Container, BSCol, BSRow } from './styledComponents';
 
 const Shop = () => {
-    return (
+    const dispatch = useDispatch();
+    const {
+        data: { getProducts }
+    } = actions;
+    const { data: dataSelectors } = selectors;
+    const products = useSelector(dataSelectors.products);
+    useEffect(() => {
+        dispatch(getProducts());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [products]);
+    return products ? (
         <Container>
             <BSContainer>
                 <BSRow>
                     <BSCol {...{ md: 12, lg: 8 }}>
-                        <Products />
+                        <Products {...{ products }} />
                     </BSCol>
                     <BSCol {...{ md: 12, lg: 4 }}>
-                        <Order />
+                        <Order {...{ products }} />
                     </BSCol>
                 </BSRow>
             </BSContainer>
         </Container>
+    ) : (
+        <div>loading products...</div>
     );
 };
 

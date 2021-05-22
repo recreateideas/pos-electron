@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Container as BSContainer } from 'react-bootstrap';
-import { useDispatch, actions, useSelector, selectors } from '../../redux';
 import { Header } from '../../ui-core';
 import {
     ImageContainer,
@@ -13,30 +12,20 @@ import {
 } from './styledComponents';
 
 const Products = props => {
-    const dispatch = useDispatch();
-    const {
-        data: { getProducts }
-    } = actions;
-    const { data: dataSelectors } = selectors;
-    const products = useSelector(dataSelectors.products);
-    useEffect(() => {
-        dispatch(getProducts());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [products]);
-    console.log(products);
+    const { products } = props;
     const bootstrap = {
         xs: 6,
         md: 4,
         lg: 3
     };
-    return products ? (
+    return (
         <Container>
             <Header {...{ title: 'Products' }} />
-            {Object.keys(products).map(categoryName => {
+            {Object.keys(products).map((categoryName, j) => {
                 const category = products[categoryName];
                 const { items } = category;
                 return (
-                    <BSContainer>
+                    <BSContainer key={j}>
                         <Category>
                             <BSRow>
                                 {items.map((item, i) => {
@@ -48,8 +37,9 @@ const Products = props => {
                                                     alt={name}
                                                     src={imageUrl}
                                                 />
-                                                <Label>
-                                                    {name} - ${price}
+                                                <Label>{name}</Label>
+                                                <Label className="price">
+                                                    ${price}
                                                 </Label>
                                             </ImageContainer>
                                         </BSCol>
@@ -61,11 +51,13 @@ const Products = props => {
                 );
             })}
         </Container>
-    ) : (
-        <div>loading products...</div>
     );
 };
 
 Products.displayName = 'Products';
+
+Products.propTypes = {
+    products: PropTypes.object
+};
 
 export default Products;

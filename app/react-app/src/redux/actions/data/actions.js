@@ -28,4 +28,28 @@ const getProducts = () => async (dispatch, getState) => {
     }
 };
 
-export { getProducts };
+const checkout = orderStatus => async dispatch => {
+    dispatch({
+        type: types.CHECKOUT_PENDING
+    });
+    const config = {
+        url: `http://localhost:2999/billing/checkout`,
+        method: 'POST',
+        body: { orderStatus },
+        errorHandler: error => {
+            dispatch({
+                type: types.CHECKOUT_ERROR,
+                data: { message: error.message }
+            });
+        },
+        responseHandler: response => {
+            dispatch({
+                type: types.CHECKOUT_SUCCESS,
+                data: { products: response?.data?.products }
+            });
+        }
+    };
+    await fetcher(config);
+};
+
+export { getProducts, checkout };

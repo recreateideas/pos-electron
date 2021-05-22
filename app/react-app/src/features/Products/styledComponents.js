@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 
 const Container = styled.div`
     height: 100%;
-    border: solid 1px red;
+    border-right: solid 1px grey;
 `;
 
 const Category = styled.div``;

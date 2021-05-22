@@ -1,12 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
-    ${props => {
-        const {
-            theme: {}
-        } = props;
-        return css``;
-    }}
+    position: relative;
+    display: flex;
+    padding: 16px;
+    background-color: #6b5b95;
 `;
 
-export { Container };
+const Title = styled.div`
+    margin: auto;
+    color: white;
+`;
+
+export { Container, Title };
