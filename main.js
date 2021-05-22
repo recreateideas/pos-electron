@@ -1,7 +1,7 @@
 const { ipcRenderer, app, BrowserWindow } = require('electron');
 const { spawn } = require('child_process');
 
-const ordersService = spawn('node', ['./app/services/orders-service/bin/www'], {
+const dataService = spawn('node', ['./app/services/data-service/bin/www'], {
     cwd: process.cwd()
 });
 
@@ -12,7 +12,7 @@ const debug = /--debug/.test(process.argv[2]);
 const loadMainProcess = () => {
     ipcRenderer.on('stop-server', (event, data) => {
         /* we should use IPC to tell orders-service to gracefully shutdown */
-        ordersService.kill('SIGINT');
+        dataService.kill('SIGINT');
     });
 };
 
@@ -26,14 +26,13 @@ const createWindow = () => {
         width: 1280,
         height: 840
     });
-    mainWindow.loadFile('./app/renderer/build/index.html');
+    mainWindow.loadFile('./app/react-app/build/index.html');
 
     if (debug) {
         process.env.NODE_ENV = 'development';
         mainWindow.webContents.openDevTools();
     }
 
-    //mainWindow.webContents.openDevTools();
     mainWindow.on('close', () => {
         mainWindow.webContents.send('stop-server');
     });
