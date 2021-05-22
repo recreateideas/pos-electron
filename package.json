@@ -5,19 +5,17 @@
     "main": "main.js",
     "license": "MIT",
     "scripts": {
-        "electron:debug": "cd app/react-app && npm run build && cd ../.. && electron . --debug",
-        "electron": "cd app/react-app && npm run build && cd ../.. && electron ."
+        "build": "cd app/react-app && npm run build && cd ../..",
+        "electron:debug": "npm run build && electron . --debug",
+        "electron": "npm run build && electron ."
     },
     "dependencies": {
-        "@testing-library/jest-dom": "^5.11.4",
-        "@testing-library/react": "^11.1.0",
-        "@testing-library/user-event": "^12.1.10",
-        "electron": "^12.0.9",
-        "electron-packager": "^15.2.0",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-scripts": "4.0.3",
-        "web-vitals": "^1.0.1"
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "react-scripts": "4.0.3"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "electron": "12.0.9",
+        "electron-builder": "22.10.5"
+    }
 }

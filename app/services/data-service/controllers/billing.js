@@ -7,12 +7,14 @@ const checkout = async (req, res) => {
     } = req;
     const error = await service.exportReceipt({ receiptBody: orderStatus });
     if (error) {
-        res.status(500).send(error);
+        res.status(500);
+        res.send(error);
         console.debug('Checkout [ERR]');
         return;
     }
     console.debug('Checkout [END]');
-    res.status(204).send();
+    res.status(204);
+    res.send();
 };
 
 module.exports = {
