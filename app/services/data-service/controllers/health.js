@@ -1,5 +1,5 @@
 const healthCheck = async (req, res) => {
-    console.log('Health: Ok');
+    console.debug('HEALTH');
     res.status(200).send({
         health: 'ok'
     });

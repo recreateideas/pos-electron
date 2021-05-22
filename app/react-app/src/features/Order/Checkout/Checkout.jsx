@@ -1,6 +1,7 @@
 import { useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, actions } from '../../../redux';
+import { useDispatch, actions, selectors, useSelector } from '../../../redux';
+import Loader from '../../../ui-core/Loader';
 import {
     Container,
     TotalSection,
@@ -14,6 +15,8 @@ const Checkout = memo(props => {
     const {
         data: { checkout }
     } = actions;
+    const { data: dataSelectors } = selectors;
+    const isCheckoutPending = useSelector(dataSelectors.isCheckoutPending);
     const total = useMemo(() => {
         if (!orderStatus) {
             return 0;
@@ -37,7 +40,13 @@ const Checkout = memo(props => {
                 className="great-big-button"
                 {...{ show: !!total, onClick: onCheckout }}
             >
-                Checkout
+                {isCheckoutPending ? (
+                    <Loader
+                        {...{ color: 'white', message: 'loading products...' }}
+                    />
+                ) : (
+                    'Checkout'
+                )}
             </GreatBigButton>
         </Container>
     );

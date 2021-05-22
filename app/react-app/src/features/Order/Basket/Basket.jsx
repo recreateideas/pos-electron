@@ -30,8 +30,12 @@ const Basket = props => {
                                         }
                                     });
                                 return (
-                                    <Row className="order-row" key={i}>
-                                        <Col className="counter">
+                                    <Row
+                                        key={i}
+                                        className="order-row"
+                                        {...{ isHighlighted: countValue }}
+                                    >
+                                        <Col className="label counter">
                                             <Counter
                                                 {...{
                                                     value: countValue,
@@ -39,13 +43,11 @@ const Basket = props => {
                                                 }}
                                             />
                                         </Col>
-                                        <Col className="item-label">
+                                        <Col className="label item-label">
                                             <div>{name}</div>
                                         </Col>
-                                        <Col className="price">
-                                            <div className="price">
-                                                ${itemValue}
-                                            </div>
+                                        <Col className="label price">
+                                            <div>${itemValue}</div>
                                         </Col>
                                     </Row>
                                 );

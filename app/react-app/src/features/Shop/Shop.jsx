@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Container as BSContainer } from 'react-bootstrap';
 import { useDispatch, actions, useSelector, selectors } from '../../redux';
 import { Order, Products } from '../../features';
+import { Loader } from '../../ui-core';
 import { Container, BSCol, BSRow } from './styledComponents';
 
 const Shop = () => {
@@ -15,9 +16,10 @@ const Shop = () => {
         dispatch(getProducts());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [products]);
+
     return products ? (
         <Container>
-            <BSContainer>
+            <BSContainer fluid>
                 <BSRow>
                     <BSCol {...{ md: 12, lg: 8 }}>
                         <Products {...{ products }} />
@@ -29,7 +31,7 @@ const Shop = () => {
             </BSContainer>
         </Container>
     ) : (
-        <div>loading products...</div>
+        <Loader {...{ message: 'loading products...' }} />
     );
 };
 

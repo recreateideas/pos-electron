@@ -2,11 +2,25 @@ import styled from 'styled-components';
 import { Col, Row } from 'react-bootstrap';
 
 const Container = styled.div`
+    position: relative;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     border-right: solid 1px grey;
 `;
 
-const Category = styled.div``;
+const ScrollContainer = styled.div`
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+`;
+
+const Category = styled.thead`
+    font-size: 24px;
+    font-weight: 600;
+`;
 
 const ImageContainer = styled.div`
     cursor: pointer;
@@ -22,8 +36,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-    height: 9rem;
-    width: 9rem;
+    width: inherit;
     margin: auto;
     border-radius: 6px;
 `;
@@ -41,4 +54,13 @@ const Label = styled.div`
     text-align: center;
 `;
 
-export { ImageContainer, Container, Category, Image, BSCol, BSRow, Label };
+export {
+    ImageContainer,
+    Container,
+    Category,
+    Image,
+    BSCol,
+    BSRow,
+    Label,
+    ScrollContainer
+};

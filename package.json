@@ -5,8 +5,8 @@
     "main": "main.js",
     "license": "MIT",
     "scripts": {
-        "electron:debug": "electron . --debug",
-        "electron": "electron ."
+        "electron:debug": "cd app/react-app && npm run build && cd ../.. && electron . --debug",
+        "electron": "cd app/react-app && npm run build && cd ../.. && electron ."
     },
     "dependencies": {
         "@testing-library/jest-dom": "^5.11.4",

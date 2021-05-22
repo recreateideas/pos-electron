@@ -7,17 +7,13 @@
         "dev": "nodemon ./bin/www"
     },
     "dependencies": {
-        "body-parser": "^1.18.3",
-        "cookie-parser": "^1.4.3",
-        "cors": "^2.8.5",
-        "debug": "^3.1.0",
-        "express": "^4.16.3",
-        "faker": "^5.5.3",
-        "hbs": "^4.0.1",
-        "serve-favicon": "^2.5.0",
-        "uuid": "^8.3.2"
+        "body-parser": "1.18.3",
+        "cookie-parser": "1.4.3",
+        "cors": "2.8.5",
+        "express": "4.16.3",
+        "uuid": "8.3.2"
     },
     "devDependencies": {
-        "nodemon": "^2.0.7"
+        "nodemon": "2.0.7"
     }
 }

@@ -4,6 +4,7 @@ import { Header } from '../../ui-core';
 import {
     ImageContainer,
     Container,
+    ScrollContainer,
     Category,
     Image,
     BSCol,
@@ -19,14 +20,17 @@ const Products = props => {
         lg: 3
     };
     return (
-        <Container>
+        <Container className="products">
             <Header {...{ title: 'Products' }} />
-            {Object.keys(products).map((categoryName, j) => {
-                const category = products[categoryName];
-                const { items } = category;
-                return (
-                    <BSContainer key={j}>
-                        <Category>
+            <ScrollContainer className="product-grid">
+                {Object.keys(products).map((categoryName, j) => {
+                    const category = products[categoryName];
+                    const { items, label: categoryLabel } = category;
+                    return (
+                        <BSContainer key={j}>
+                            <Category className="category">
+                                {categoryLabel}
+                            </Category>
                             <BSRow>
                                 {items.map((item, i) => {
                                     const { name, price, imageUrl } = item;
@@ -46,10 +50,10 @@ const Products = props => {
                                     );
                                 })}
                             </BSRow>
-                        </Category>
-                    </BSContainer>
-                );
-            })}
+                        </BSContainer>
+                    );
+                })}
+            </ScrollContainer>
         </Container>
     );
 };

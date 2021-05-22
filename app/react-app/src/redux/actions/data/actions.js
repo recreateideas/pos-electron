@@ -35,7 +35,7 @@ const checkout = orderStatus => async dispatch => {
     const config = {
         url: `http://localhost:2999/billing/checkout`,
         method: 'POST',
-        body: { orderStatus },
+        data: { orderStatus },
         errorHandler: error => {
             dispatch({
                 type: types.CHECKOUT_ERROR,

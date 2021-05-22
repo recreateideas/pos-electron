@@ -13,6 +13,7 @@ const fetcher = async args => {
     const params = { method, headers, data };
     let response;
     try {
+        console.log(params);
         response = await axios(url, params);
         return responseHandler(response);
     } catch (err) {

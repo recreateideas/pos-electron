@@ -23,8 +23,8 @@ const createWindow = () => {
             contextIsolation: false
         },
         autoHideMenuBar: true,
-        width: 1280,
-        height: 840
+        width: 1366,
+        height: 768
     });
     mainWindow.loadFile('./app/react-app/build/index.html');
 
