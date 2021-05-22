@@ -1,12 +1,15 @@
 import { fetcher } from '../../../modules';
 import types from './types';
 
-const getProducts = () => dispatch => {
+const getProducts = () => async (dispatch, getState) => {
+    const {
+        data: { products }
+    } = getState();
     dispatch({
         type: types.GET_PRODUCTS_PENDING
     });
     const config = {
-        url: `/products`,
+        url: `http://localhost:2999/products`,
         errorHandler: error => {
             dispatch({
                 type: types.GET_PRODUCTS_ERROR,
@@ -16,11 +19,13 @@ const getProducts = () => dispatch => {
         responseHandler: response => {
             dispatch({
                 type: types.GET_PRODUCTS_SUCCESS,
-                data: { user: response?.data?.user }
+                data: { products: response?.data?.products }
             });
         }
     };
-    fetcher(config);
+    if (!products) {
+        await fetcher(config);
+    }
 };
 
 export { getProducts };

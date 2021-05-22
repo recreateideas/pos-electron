@@ -1,12 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
-    ${props => {
-        const {
-            theme: {}
-        } = props;
-        return css``;
-    }}
+    height: 100%;
+    border: solid 1px red;
 `;
 
 export { Container };

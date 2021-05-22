@@ -1,19 +1,10 @@
-import { Order, Products } from './features';
 import useHealthCheck from './hooks/use-health-check';
+import { Shop } from './features';
 
 function App() {
     const isHealthy = useHealthCheck();
     return (
-        <div className="App">
-            {isHealthy ? (
-                <>
-                    <Products />
-                    <Order />
-                </>
-            ) : (
-                'checking apps health...'
-            )}
-        </div>
+        <div id="app">{isHealthy ? <Shop /> : 'checking apps health...'}</div>
     );
 }
 

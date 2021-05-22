@@ -1,5 +1,5 @@
-const axios = require('axios');
-const defaults = require('./defaults');
+import axios from 'axios';
+import defaults from './defaults';
 
 const fetcher = async args => {
     const {

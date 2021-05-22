@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { Container } from './styledComponents';
 
 const Header = props => {
-    return <Container>Header</Container>;
+    const { title } = props;
+    return <Container>{title}</Container>;
 };
 
 Header.displayName = 'Header';
 
 Header.defaultProps = {};
 
-Header.propTypes = {};
+Header.propTypes = {
+    title: PropTypes.string
+};
 
 export default Header;
