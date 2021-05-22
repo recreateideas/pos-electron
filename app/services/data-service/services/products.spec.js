@@ -1,4 +1,4 @@
-require('../../__mocks__');
+require('../__mocks__');
 const { queryProducts } = require('./products');
 const { burgers, sides } = require('./_data');
 

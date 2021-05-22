@@ -5,14 +5,12 @@
     "main": "main.js",
     "license": "MIT",
     "scripts": {
-        "build": "cd app/react-app && npm run build && cd ../..",
-        "electron:debug": "npm run build && electron . --debug",
-        "electron": "npm run build && electron ."
-    },
-    "dependencies": {
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "react-scripts": "4.0.3"
+        "build:react": "cd app/react-app && npm i && npm run build && cd ../..",
+        "install:services": "cd app/services/data-service && npm i && cd ../..",
+        "bootstrap": "npm run build:react && npm run install:services",
+        "electron": "electron .",
+        "electron:debug": "npm run electron -- --debug",
+        "electron:bootstrap": "npm run bootstrap && npm run electron"
     },
     "devDependencies": {
         "electron": "12.0.9",

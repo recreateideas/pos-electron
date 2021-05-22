@@ -1,4 +1,4 @@
-require('../../__mocks__');
+require('../__mocks__');
 const { checkout } = require('./billing');
 const { billing: service } = require('../services');
 

@@ -1,4 +1,4 @@
-require('../../__mocks__');
+require('../__mocks__');
 const { healthCheck } = require('./health');
 
 const req = {};

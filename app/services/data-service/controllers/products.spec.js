@@ -1,4 +1,4 @@
-require('../../__mocks__');
+require('../__mocks__');
 const { getProducts } = require('./products');
 const { products: service } = require('../services');
 
