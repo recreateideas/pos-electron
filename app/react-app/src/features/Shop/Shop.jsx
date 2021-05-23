@@ -17,6 +17,10 @@ const Shop = () => {
         dispatch(getProducts());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [products]);
+    /**
+     * To have Products and Orders be able to share state we need to lift the state up from Order
+     * but this goes against the requirements of this exercise. Either here or in redux.
+     */
     const addItem = (...args) => {
         ordersRef.current.addItem(...args);
     };

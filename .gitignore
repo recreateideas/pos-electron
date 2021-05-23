@@ -3,9 +3,12 @@
 /**/build
 /**/package-lock.json
 
+/dist
 # testing
 /coverage
 
 # misc
 .DS_Store
 .env
+
+notes.txt

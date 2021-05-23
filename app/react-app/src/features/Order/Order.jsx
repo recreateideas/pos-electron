@@ -16,6 +16,10 @@ const Order = forwardRef((props, ref) => {
         }
         return undefined;
     }, {});
+    /**
+     * To have Products and Orders be able to share state we need to lift the state up from Order
+     * but this goes against the requirements of this exercise. Either in Shop or in redux.
+     */
     useImperativeHandle(
         ref,
         () => ({

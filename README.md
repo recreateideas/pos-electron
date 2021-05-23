@@ -39,6 +39,5 @@ What's missing
 -   Some error handling in UI (Error boundaries and invalid API responses)
 -   Properly devide redux store into slices
 -   Test coverage in UI
--   Electron-builder is not configured
 
 [MIT](https://choosealicense.com/licenses/mit/)

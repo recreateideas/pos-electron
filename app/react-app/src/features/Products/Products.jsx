@@ -38,6 +38,10 @@ const Products = props => {
                                         <BSCol key={i} {...bootstrap}>
                                             <ImageContainer
                                                 {...{
+                                                    /**
+                                                     * To have Products and Orders be able to share state we need to lift the state up from Order
+                                                     * but this goes against the requirements of this exercise. Either in Shop or in redux.
+                                                     */
                                                     onClick: onClick.bind(
                                                         null,
                                                         id,

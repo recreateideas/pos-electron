@@ -1,9 +1,15 @@
-const { ipcRenderer, app, BrowserWindow } = require('electron');
+const fixPath = require('fix-path');
+const path = require('path');
 const { spawn } = require('child_process');
+const { ipcRenderer, app, BrowserWindow } = require('electron');
 
-const dataService = spawn('node', ['./app/services/data-service/bin/www'], {
-    cwd: process.cwd()
-});
+fixPath();
+const dataService = spawn('node', [
+    path.join(__dirname, '/app/services/data-service/bin/www'),
+    {
+        cmd: process.cmd()
+    }
+]);
 
 let mainWindow;
 
@@ -26,7 +32,9 @@ const createWindow = () => {
         width: 1366,
         height: 768
     });
-    mainWindow.loadFile('./app/react-app/build/index.html');
+    mainWindow.loadFile(
+        path.join(__dirname, '/app/react-app/build/index.html')
+    );
 
     if (debug) {
         process.env.NODE_ENV = 'development';
