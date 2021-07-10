@@ -12,13 +12,13 @@ const useServicePorts = () => {
     const servicePorts = useSelector(commonSelectors.servicePorts);
     const isElectron = !!ipcRenderer;
     useEffect(() => {
+        dispatch(setIsElectron(isElectron));
         if (isElectron) {
             dispatch(getServicePorts());
-            dispatch(setIsElectron(isElectron));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    return isElectron ? servicePorts : undefined;
+    return isElectron ? servicePorts : {};
 };
 
 export default useServicePorts;

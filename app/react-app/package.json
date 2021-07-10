@@ -4,6 +4,7 @@
     "version": "0.1.0",
     "private": true,
     "homepage": "./",
+    "proxy": "http://localhost:2999",
     "dependencies": {
         "axios": "0.21.1",
         "bootstrap": "5.0.1",
