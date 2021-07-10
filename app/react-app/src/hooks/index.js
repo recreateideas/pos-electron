@@ -1,3 +1,4 @@
-import { useHealthCheck } from './use-health-check';
+import useServicePorts from './use-service-ports';
+import useHealthCheck from './use-health-check';
 
-export { useHealthCheck };
+export { useServicePorts, useHealthCheck };

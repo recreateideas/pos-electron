@@ -1,7 +1,7 @@
 import initialState from '../store/initialState';
 import { types } from '../actions/data';
 
-const auth = (state = initialState.data, action) => {
+const data = (state = initialState.data, action) => {
     const { type, data } = action;
     switch (type) {
         case types.GET_PRODUCTS_SUCCESS:
@@ -31,4 +31,4 @@ const auth = (state = initialState.data, action) => {
     }
 };
 
-export default auth;
+export default data;

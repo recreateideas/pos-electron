@@ -11,7 +11,7 @@
         "bootstrap": "npm i && npm run install:services && npm run cover:services",
         "electron": "electron .",
         "electron:debug": "npm run electron -- --debug",
-        "electron:bootstrap": "npm run bootstrap && npm run electron",
+        "electron:bootstrap": "npm run bootstrap && npm run build:react && npm run electron",
         "build": "npm run build:react && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder"
     },
     "build": {
@@ -24,6 +24,7 @@
     },
     "devDependencies": {
         "electron": "12.0.9",
+        "electron-devtools-installer": "3.2.0",
         "electron-builder": "22.10.5"
     },
     "dependencies": {
