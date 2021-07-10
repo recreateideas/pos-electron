@@ -43,7 +43,7 @@ const checkout = orderStatus => async (dispatch, getState) => {
         ? `http://localhost:${servicePorts['data-service']}`
         : '';
     const config = {
-        url: `${path}/checkout`,
+        url: `${path}/billing//checkout`,
         method: 'POST',
         data: { orderStatus },
         errorHandler: error => {
