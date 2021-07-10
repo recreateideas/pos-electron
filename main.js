@@ -1,10 +1,5 @@
 const fixPath = require('fix-path');
 const path = require('path');
-const {
-    default: installExtension,
-    REDUX_DEVTOOLS,
-    REACT_DEVELOPER_TOOLS
-} = require('electron-devtools-installer');
 const { ipcRenderer, app, BrowserWindow } = require('electron');
 
 fixPath();
@@ -20,6 +15,11 @@ const debug = /--debug/.test(process.argv[2]);
 
 const addReactReduxDevTools = debug => {
     if (debug) {
+        const {
+            default: installExtension,
+            REDUX_DEVTOOLS,
+            REACT_DEVELOPER_TOOLS
+        } = require('electron-devtools-installer');
         const options = {
             loadExtensionOptions: { allowFileAccess: true }
         };
