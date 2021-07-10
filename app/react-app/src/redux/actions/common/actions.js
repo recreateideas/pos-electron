@@ -2,6 +2,11 @@ import types from './types';
 
 const { ipcRenderer } = window.require ? window.require('electron') : {};
 
+const setIsElectron = isElectron => ({
+    type: types.SET_IS_ELECTRON,
+    data: { isElectron }
+});
+
 const getServicePorts = () => async dispatch => {
     if (ipcRenderer) {
         dispatch({
@@ -17,4 +22,4 @@ const getServicePorts = () => async dispatch => {
     }
 };
 
-export { getServicePorts };
+export { getServicePorts, setIsElectron };

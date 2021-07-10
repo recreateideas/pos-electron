@@ -3,13 +3,17 @@ import types from './types';
 
 const getProducts = () => async (dispatch, getState) => {
     const {
-        data: { products }
+        data: { products },
+        common: { servicePorts }
     } = getState();
     dispatch({
         type: types.GET_PRODUCTS_PENDING
     });
+    const path = servicePorts
+        ? `http://localhost:${servicePorts['data-service']}`
+        : '';
     const config = {
-        url: `http://localhost:2999/products`,
+        url: `${path}/products`,
         errorHandler: error => {
             dispatch({
                 type: types.GET_PRODUCTS_ERROR,
@@ -28,12 +32,18 @@ const getProducts = () => async (dispatch, getState) => {
     }
 };
 
-const checkout = orderStatus => async dispatch => {
+const checkout = orderStatus => async (dispatch, getState) => {
+    const {
+        common: { servicePorts }
+    } = getState();
     dispatch({
         type: types.CHECKOUT_PENDING
     });
+    const path = servicePorts
+        ? `http://localhost:${servicePorts['data-service']}`
+        : '';
     const config = {
-        url: `http://localhost:2999/billing/checkout`,
+        url: `${path}/checkout`,
         method: 'POST',
         data: { orderStatus },
         errorHandler: error => {

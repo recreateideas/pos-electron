@@ -1,6 +1,5 @@
 const fixPath = require('fix-path');
 const path = require('path');
-const { spawn } = require('child_process');
 const {
     default: installExtension,
     REDUX_DEVTOOLS,
@@ -10,15 +9,12 @@ const { ipcRenderer, app, BrowserWindow } = require('electron');
 
 fixPath();
 
+const { killAllServices } = require(path.join(
+    __dirname,
+    'service-manager/main.js'
+));
+
 let mainWindow;
-
-const services = ['data-service'];
-
-let runningServices = services.map(serviceName =>
-    spawn('node', [
-        path.join(__dirname, '/app/services/', serviceName, '/bin/www')
-    ])
-);
 
 const debug = /--debug/.test(process.argv[2]);
 
@@ -39,8 +35,7 @@ const addReactReduxDevTools = debug => {
 const loadMainProcess = () => {
     if (ipcRenderer) {
         ipcRenderer.on('stop-server', (event, data) => {
-            /* we should use IPC to tell all services to gracefully shutdown */
-            runningServices.forEach(service => service.kill('SIGINT'));
+            killAllServices();
         });
     }
 };
@@ -48,7 +43,8 @@ const loadMainProcess = () => {
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         },
         autoHideMenuBar: true,
         width: 1366,
@@ -73,6 +69,7 @@ const createWindow = () => {
         mainWindow.webContents.send('stop-server');
     });
     mainWindow.on('closed', () => {
+        killAllServices();
         mainWindow = null;
     });
 };
@@ -86,6 +83,7 @@ app.on('browser-window-created', (e, window) => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
+        ipcRenderer.send('kill-all-services');
     }
 });
 

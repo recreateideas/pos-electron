@@ -4,7 +4,7 @@ import { Shop } from './features';
 
 function App() {
     const servicePorts = useServicePorts();
-    const isHealthy = useHealthCheck();
+    const isHealthy = useHealthCheck({ servicePorts });
     const isChecking = isHealthy === undefined;
     return (
         <div id="app">

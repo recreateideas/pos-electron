@@ -28,6 +28,7 @@
         "electron-builder": "22.10.5"
     },
     "dependencies": {
-        "fix-path": "^3.0.0"
+        "fix-path": "3.0.0",
+        "get-port": "^5.1.1"
     }
 }

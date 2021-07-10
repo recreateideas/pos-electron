@@ -6,17 +6,19 @@ const { ipcRenderer } = window.require ? window.require('electron') : {};
 const useServicePorts = () => {
     const dispatch = useDispatch();
     const {
-        common: { getServicePorts }
+        common: { getServicePorts, setIsElectron }
     } = actions;
     const { common: commonSelectors } = selectors;
     const servicePorts = useSelector(commonSelectors.servicePorts);
+    const isElectron = !!ipcRenderer;
     useEffect(() => {
-        if (ipcRenderer) {
+        if (isElectron) {
             dispatch(getServicePorts());
+            dispatch(setIsElectron(isElectron));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    return ipcRenderer ? servicePorts : true;
+    return isElectron ? servicePorts : undefined;
 };
 
 export default useServicePorts;

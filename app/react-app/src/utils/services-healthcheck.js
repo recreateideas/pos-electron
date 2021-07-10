@@ -3,18 +3,22 @@ import { fetcher } from '../modules';
 const services = [
     {
         name: 'data-service',
-        url: 'http://127.0.0.1:2999/health',
+        path: '/health',
         maxRetries: 10
     }
     // add other services here to perform healthchecks
 ];
-const servicesHealthcheck = async () => {
+const servicesHealthcheck = async ({ servicePorts, isElectron }) => {
     const checks = await Promise.allSettled(
         services.map(service => {
-            const { name, url, maxRetries } = service;
+            const { name, path, maxRetries } = service;
             return new Promise((resolve, reject) => {
                 let triesCount = 1;
                 const check = setInterval(() => {
+                    const url = isElectron
+                        ? `http://localhost:${servicePorts[name]}${path}`
+                        : path;
+                    console.log(servicePorts, url);
                     const config = {
                         url,
                         method: 'GET',

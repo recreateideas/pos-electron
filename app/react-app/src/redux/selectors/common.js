@@ -1,3 +1,5 @@
 const servicePorts = state => state.common.servicePorts;
 
-export { servicePorts };
+const isElectron = state => state.common.isElectron;
+
+export { isElectron, servicePorts };
